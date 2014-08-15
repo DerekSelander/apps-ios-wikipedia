@@ -7,7 +7,8 @@
 
 -(CGFloat)getStatusBarHeight
 {
-    return 20;
+    return CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]);
+  
 }
 
 @end
