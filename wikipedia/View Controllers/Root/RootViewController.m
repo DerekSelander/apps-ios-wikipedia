@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topContainerHeightConstraint;
 
+@property (nonatomic, assign) BOOL shouldStatusBarBeHidden;
 @property (strong, nonatomic) UIViewController *topVC;
 
 @property (strong, nonatomic) UIImageView *splashImage;
@@ -371,7 +372,8 @@
         [UIView animateWithDuration:0.12f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             
             self.topMenuHidden = hidden;
-
+            self.shouldStatusBarBeHidden = hidden;
+            [self setNeedsStatusBarAppearanceUpdate];
             WebViewController *webVC = [NAV searchNavStackForViewControllerOfClass:[WebViewController class]];
             webVC.bottomMenuHidden = self.topMenuHidden;
             
@@ -387,6 +389,11 @@
         }];
         
     }];
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return self.shouldStatusBarBeHidden;
 }
 
 -(void)updateViewConstraints

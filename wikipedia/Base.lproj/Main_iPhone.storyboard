@@ -103,7 +103,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.047058828175067902" green="0.047058828175067902" blue="0.047058828175067902" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="VGj-z3-9mh" firstAttribute="leading" secondItem="sgu-W1-m18" secondAttribute="leading" id="jVV-fN-1Va"/>
                                     <constraint firstAttribute="bottom" secondItem="VGj-z3-9mh" secondAttribute="bottom" id="jvc-8X-PKF"/>
