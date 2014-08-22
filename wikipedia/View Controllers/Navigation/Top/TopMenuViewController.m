@@ -178,7 +178,7 @@
         view.hidden = NO;
 
         [self.navBarContainer addConstraints:
-         [NSLayoutConstraint constraintsWithVisualFormat: @"V:|-(topMargin)-[view(TOP_MENU_INITIAL_HEIGHT)]"
+         [NSLayoutConstraint constraintsWithVisualFormat: @"V:|-[view(TOP_MENU_INITIAL_HEIGHT)]|"
                                                  options: 0
                                                  metrics: @{
                                                     @"topMargin": @(topMargin),

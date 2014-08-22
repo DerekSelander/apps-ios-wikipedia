@@ -1597,7 +1597,6 @@
 			buildPhases = (
 				D4991431181D51DE00E6073C /* Sources */,
 				D4991432181D51DE00E6073C /* Frameworks */,
-				04272E75193FF7F000CC682F /* ShellScript */,
 				D4C16A621970946900CD91AD /* ShellScript */,
 				D4C16A631970949A00CD91AD /* ShellScript */,
 				D4991433181D51DE00E6073C /* Resources */,
@@ -1754,20 +1753,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		04272E75193FF7F000CC682F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "scripts/make-css-assets.bash";
-		};
 		D4C16A621970946900CD91AD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
