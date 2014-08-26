@@ -2093,8 +2093,6 @@ typedef enum {
 
     _referencesHidden = referencesHidden;
 
-    [self updateReferencesHeightAndBottomConstraints];
-
     if (referencesHidden) {
         // Cause the highlighted ref link in the webView to no longer be highlighted.
         [self.referencesVC reset];
@@ -2106,24 +2104,12 @@ typedef enum {
     self.referencesContainerView.alpha = alpha;
 }
 
--(void)updateReferencesHeightAndBottomConstraints
-{
-    CGFloat refsHeight = [self getRefsPanelHeight];
-    self.referencesContainerViewBottomConstraint.constant = self.referencesHidden ? refsHeight : 0.0;
-    self.referencesContainerViewHeightConstraint.constant = refsHeight;
-}
-
 -(CGFloat)getRefsPanelHeight
 {
     CGFloat percentOfHeight = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 0.4 : 0.6;
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) percentOfHeight *= 0.5;
     NSNumber *refsHeight = @(self.view.frame.size.height * percentOfHeight);
     return (CGFloat)refsHeight.integerValue;
-}
-
--(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self updateReferencesHeightAndBottomConstraints];
 }
 
 -(BOOL)didFindReferencesInPayload:(NSDictionary *)payload
