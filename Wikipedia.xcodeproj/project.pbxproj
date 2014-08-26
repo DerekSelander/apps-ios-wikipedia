@@ -1618,11 +1618,6 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Wikimedia Foundation";
-				TargetAttributes = {
-					D4991434181D51DE00E6073C = {
-						DevelopmentTeam = H4U46V6494;
-					};
-				};
 			};
 			buildConfigurationList = D4991430181D51DE00E6073C /* Build configuration list for PBXProject "Wikipedia" */;
 			compatibilityVersion = "Xcode 3.2";
