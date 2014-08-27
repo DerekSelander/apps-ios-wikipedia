@@ -345,7 +345,7 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 
         [UIView animateWithDuration:0.12f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            
+            [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationSlide];
             self.topMenuHidden = hidden;
             self.shouldStatusBarBeHidden = hidden;
             [self setNeedsStatusBarAppearanceUpdate];
