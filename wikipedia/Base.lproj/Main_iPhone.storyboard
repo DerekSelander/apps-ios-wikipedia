@@ -112,7 +112,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sgu-W1-m18" firstAttribute="top" secondItem="PkH-FW-CMU" secondAttribute="top" id="2Fv-ke-Rdf"/>
                             <constraint firstItem="sgu-W1-m18" firstAttribute="leading" secondItem="PkH-FW-CMU" secondAttribute="leading" id="8Ea-w0-zru"/>
