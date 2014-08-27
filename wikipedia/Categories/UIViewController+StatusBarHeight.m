@@ -7,7 +7,12 @@
 
 -(CGFloat)getStatusBarHeight
 {
-    return 20;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+       CGRectGetWidth([[UIApplication sharedApplication] statusBarFrame]);
+    }
+    
+    return CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]);
 }
 
 @end
