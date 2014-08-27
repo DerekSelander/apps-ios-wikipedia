@@ -87,7 +87,7 @@ typedef enum {
 
 - (BOOL)prefersStatusBarHidden
 {
-    return YES;
+    return NO;
 }
 
 -(void)resetBridge
