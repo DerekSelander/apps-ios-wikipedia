@@ -12,7 +12,7 @@
 @property (assign, readwrite) MWCrumbTestStatus status;
 @property (copy, readwrite) NSString *expectedTrail;
 @property (copy, readwrite) NSString *trailSoFar;
-@property (copy, readwrite) NSString *crumbyDescription;
+@property (copy, readwrite) NSString *customDescription;
 @property (assign, readwrite) SEL kickoffSelector;
 
 @end
@@ -30,7 +30,7 @@
         kickoffTarget_ = target;
         self.kickoffSelector = kickOffSelector;
         self.expectedTrail = trailExpected;
-        self.crumbyDescription = description;
+        self.customDescription = description;
         self.status = CRUMBY_STATUS_READY_TO_HIKE;
 
         // Ensure any changes to trailSoFar cause status to be updated accordingly
@@ -165,9 +165,11 @@
     }];
 }
 
+#pragma mark - Description
+
 - (NSString *)description
 {
-    return self.crumbyDescription;
+    return self.customDescription;
 }
 
 @end
