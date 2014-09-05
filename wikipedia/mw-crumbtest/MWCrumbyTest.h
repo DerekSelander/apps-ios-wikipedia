@@ -29,7 +29,6 @@ typedef enum {
 @property (copy, readonly) NSString *trailSoFar;
 @property (copy, readonly) NSString *expectedTrail;
 @property (assign, readonly) SEL kickoffSelector;
-@property (copy, readonly) NSString *description;
 
 /*
 Needed a simple way to confirm that async operation(s) for a given task had executed in a 
