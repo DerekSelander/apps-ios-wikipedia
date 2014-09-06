@@ -2093,8 +2093,6 @@ typedef enum {
 
     _referencesHidden = referencesHidden;
 
-    [self updateReferencesHeightAndBottomConstraints];
-
     if (referencesHidden) {
         // Cause the highlighted ref link in the webView to no longer be highlighted.
         [self.referencesVC reset];
@@ -2106,13 +2104,6 @@ typedef enum {
     self.referencesContainerView.alpha = alpha;
 }
 
--(void)updateReferencesHeightAndBottomConstraints
-{
-    CGFloat refsHeight = [self getRefsPanelHeight];
-    self.referencesContainerViewBottomConstraint.constant = self.referencesHidden ? refsHeight : 0.0;
-    self.referencesContainerViewHeightConstraint.constant = refsHeight;
-}
-
 -(CGFloat)getRefsPanelHeight
 {
     CGFloat percentOfHeight = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 0.4 : 0.6;
@@ -2121,9 +2112,15 @@ typedef enum {
     return (CGFloat)refsHeight.integerValue;
 }
 
--(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+-(BOOL)didFindReferencesInPayload:(NSDictionary *)payload
 {
-    [self updateReferencesHeightAndBottomConstraints];
+    NSArray *refs = payload[@"refs"];
+    if (!refs || (refs.count == 0)) return NO;
+    if (refs.count == 1) {
+        NSString *firstRef = refs[0];
+        if ([firstRef isEqualToString:@""]) return NO;
+    }
+    return YES;
 }
 
 -(void)referencesShow:(NSDictionary *)payload
@@ -2131,6 +2128,15 @@ typedef enum {
     if (!self.referencesHidden){
         self.referencesVC.panelHeight = [self getRefsPanelHeight];
         self.referencesVC.payload = payload;
+        return;
+    }
+    
+    // Don't show refs panel if reference data has yet to be retrieved. The
+    // reference parsing javascript can't parse until the reference section html has
+    // been retrieved. If user taps a reference link while the non-lead sections are
+    // still being retrieved we need to just not show the panel rather than showing a
+    // useless blank panel.
+    if (![self didFindReferencesInPayload:payload]) {
         return;
     }
     

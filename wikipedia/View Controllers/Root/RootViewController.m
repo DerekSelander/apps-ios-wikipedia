@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topContainerHeightConstraint;
 
+@property (nonatomic, assign) BOOL shouldStatusBarBeHidden;
 @property (strong, nonatomic) UIViewController *topVC;
 
 @property (strong, nonatomic) UIImageView *splashImage;
@@ -153,20 +154,6 @@
     [self.splashImageBackgroundView.layer addAnimation:fade forKey:@"animateOpacity"];
     
     [CATransaction commit];
-}
-
--(void)constrainTopContainerHeight
-{
-    CGFloat topMenuHeight = TOP_MENU_INITIAL_HEIGHT;
-    
-    // iOS 7 needs to have room for a view behind the top status bar.
-    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
-        if(![self prefersStatusBarHiddenForViewController:self.topVC]){
-            topMenuHeight += [self getStatusBarHeight];
-        }
-    }
-
-    self.topContainerHeightConstraint.constant = topMenuHeight;
 }
 
 -(void)setTopMenuHidden:(BOOL)topMenuHidden
@@ -344,18 +331,7 @@
 
 -(void)updateTopMenuVisibilityConstraint
 {
-    // Hides the top menu by raising the center container's top - since the top menu sits on
-    // top of the center container the top menue gets pushed up offscreen. Shows the top menu
-    // by lowering the center container.
-
-    CGFloat topMenuVisibleHeight = TOP_MENU_INITIAL_HEIGHT;
-    CGFloat statusBarHeight = (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) ? [self getStatusBarHeight] : 0;
-    
-    if ([self prefersStatusBarHiddenForViewController:self.topVC]) statusBarHeight = 0;
-    
-    CGFloat topMenuHeight = self.topMenuHidden ? statusBarHeight : (topMenuVisibleHeight + statusBarHeight);
-    
-    self.centerContainerTopConstraint.constant = topMenuHeight;
+    self.centerContainerTopConstraint.constant = self.topMenuHidden ? 0 : 65;
 }
 
 -(void)animateTopAndBottomMenuHidden:(BOOL)hidden
@@ -371,7 +347,8 @@
         [UIView animateWithDuration:0.12f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             
             self.topMenuHidden = hidden;
-
+            self.shouldStatusBarBeHidden = hidden;
+            [self setNeedsStatusBarAppearanceUpdate];
             WebViewController *webVC = [NAV searchNavStackForViewControllerOfClass:[WebViewController class]];
             webVC.bottomMenuHidden = self.topMenuHidden;
             
@@ -389,13 +366,25 @@
     }];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return self.shouldStatusBarBeHidden;
+}
+
 -(void)updateViewConstraints
 {
-    [self constrainTopContainerHeight];
-
-    [self updateTopMenuVisibilityConstraint];
-
     [super updateViewConstraints];
+    [self updateTopMenuVisibilityConstraint];
+}
+
+// Deal with iOS 8 status bar landscape wikipedia issue
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    BOOL isStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] setStatusBarHidden:isStatusBarHidden withAnimation:UIStatusBarAnimationSlide];
+    });
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

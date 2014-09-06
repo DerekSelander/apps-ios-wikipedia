@@ -480,6 +480,7 @@
 		04F3958E186CF80100B0D6FC /* TOCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCViewController.h; sourceTree = "<group>"; };
 		04F3958F186CF80100B0D6FC /* TOCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCViewController.m; sourceTree = "<group>"; };
 		04FD6C79184EBFCD002CA02F /* ArticleData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleData.xcdatamodel; sourceTree = "<group>"; };
+		A61235FC199F593600855EA3 /* WikipediaDebug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "WikipediaDebug-Info.plist"; path = "/Users/derekselander/iOS/WikiPedia/WikipediaDebug-Info.plist"; sourceTree = "<absolute>"; };
 		C9180EC218AED30C006C1DCA /* WikipediaAppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaAppUtils.h; sourceTree = "<group>"; };
 		C9180EC318AED30C006C1DCA /* WikipediaAppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaAppUtils.m; sourceTree = "<group>"; };
 		C958EE3218CE73E600148D13 /* DownloadTitlesForRandomArticlesOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadTitlesForRandomArticlesOp.h; sourceTree = "<group>"; };
@@ -1499,6 +1500,7 @@
 			isa = PBXGroup;
 			children = (
 				D4991440181D51DE00E6073C /* Wikipedia-Info.plist */,
+				A61235FC199F593600855EA3 /* WikipediaDebug-Info.plist */,
 				D4991444181D51DE00E6073C /* main.m */,
 				D4991446181D51DE00E6073C /* Wikipedia-Prefix.pch */,
 			);
@@ -1614,11 +1616,6 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Wikimedia Foundation";
-				TargetAttributes = {
-					D4991434181D51DE00E6073C = {
-						DevelopmentTeam = AKK7J2GV64;
-					};
-				};
 			};
 			buildConfigurationList = D4991430181D51DE00E6073C /* Build configuration list for PBXProject "Wikipedia" */;
 			compatibilityVersion = "Xcode 3.2";

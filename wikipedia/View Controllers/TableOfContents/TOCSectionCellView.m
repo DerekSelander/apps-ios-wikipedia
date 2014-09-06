@@ -38,7 +38,7 @@
 
         self.font = (self.level == 1) ? [UIFont boldSystemFontOfSize:17] : [UIFont systemFontOfSize:17];
 
-        if (self.isLead) self.backgroundColor = WMF_COLOR_BLUE;
+        if (self.isLead) self.backgroundColor = [UIColor blackColor];
 
         self.textColor = (self.level <= 1) ?
             [UIColor whiteColor]
