@@ -1,3 +1,8 @@
+# Navigating a New Codebase: Tips and tricks for getting up to speed quickly
+A iOS Wikipedia fork for the [raywenderlich.com tutorial found here](http://www.raywenderlich.com/79600/navigating-a-new-codebase)
+
+Note that this repo may be a little dated given the progress of the Wikipedia repo 
+
 # Wikipedia-iOS
 
 New (late 2013) native rewrite of the [Wikipedia reader application](https://www.mediawiki.org/wiki/Wikimedia_Apps/Wikipedia) for iOS.
